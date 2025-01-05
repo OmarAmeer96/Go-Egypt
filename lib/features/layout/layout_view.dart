@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_egypt/features/favorites/favorites_view.dart';
+import 'package:go_egypt/features/profile/profile_view.dart';
 import '../governments/views/governments_view.dart';
 import '../home/views/home_view.dart';
 
@@ -17,8 +19,8 @@ class _LayoutViewState extends State<LayoutView> {
   List<Widget> pages = [
     HomeView(),
     GovernmentsView(),
-    HomeView(),
-    HomeView(),
+    FavoritesView(),
+    ProfileView()
   ];
 
   @override
