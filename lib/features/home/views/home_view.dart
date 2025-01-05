@@ -6,7 +6,6 @@ import '../widgets/place_item_widget.dart';
 class HomeView extends StatelessWidget {
   static const String routeName = 'home';
 
-
   HomeView({super.key});
 
   @override
@@ -16,56 +15,60 @@ class HomeView extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(10.0),
         child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                const Text(
-                  'Suggested Places to visit ',
-                  style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w500,
-                      color: Color(0xFF324980)),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const Text(
+                'Suggested Places to visit ',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500,
+                  color: Color(0xFF324980),
                 ),
-                SizedBox(
-                  height: size.height * 0.4,
-                  child: GridView.builder(
-                    scrollDirection: Axis.horizontal,
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 1, mainAxisSpacing: 10),
-                    itemBuilder: (context, index) => PlaceItemWidget(
+              ),
+              SizedBox(
+                height: size.height * 0.4,
+                child: GridView.builder(
+                  scrollDirection: Axis.horizontal,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 1,
+                    mainAxisSpacing: 10,
+                  ),
+                  itemBuilder: (context, index) => SizedBox(
+                    child: PlaceItemWidget(
                       index: index,
                     ),
-                    itemCount: 5,
                   ),
+                  itemCount: 5,
                 ),
-                const Text(
-                  'Popular Places ',
-                  style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w500,
-                      color: Color(0xFF324980)
+              ),
+              const Text(
+                'Popular Places ',
+                style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w500,
+                    color: Color(0xFF324980)),
+              ),
+              SizedBox(
+                height: size.height * 0.4,
+                child: GridView.builder(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 1,
+                    mainAxisSpacing: 10,
                   ),
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index) => CardWidget(
+                    card: CardModel.cards[index],
+                    index: index,
+                  ),
+                  itemCount: 5,
                 ),
-                SizedBox(
-                    height: size.height * 0.4,
-                    child: GridView.builder(
-                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 1,
-                          mainAxisSpacing: 10,
-                        ),
-                        scrollDirection: Axis.horizontal,
-                        itemBuilder: (context, index) => CardWidget(
-                          card: CardModel.cards[index],
-                          index: index,
-                        ),
-                        itemCount:5
-                    ))
-              ],
-            ),
+              )
+            ],
           ),
         ),
+      ),
     );
   }
-
 }
