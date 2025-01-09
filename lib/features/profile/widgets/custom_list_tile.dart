@@ -25,7 +25,7 @@ class CustomListTile extends StatelessWidget {
         subtitle: Text(subtitle),
         trailing: IconButton(
           onPressed: () {
-            showEditDialog(context, false);
+            showEditDialog(context, false, title);
           },
           icon: const Icon(
             Icons.arrow_forward_ios_rounded,

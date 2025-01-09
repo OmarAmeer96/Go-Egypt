@@ -17,7 +17,7 @@ class PasswordListTile extends StatelessWidget {
         subtitle: Text('subtitle'),
         trailing: IconButton(
           onPressed: () {
-            showEditDialog(context, true);
+            // showEditDialog(context, true);
           },
           icon: const Icon(
             Icons.arrow_forward_ios_rounded,

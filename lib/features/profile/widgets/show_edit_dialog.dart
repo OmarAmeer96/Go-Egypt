@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-Future<void> showEditDialog(BuildContext context, bool? ispassword) async {
+Future<void> showEditDialog(BuildContext context, bool? ispassword, String title) async {
   return showDialog<void>(
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
         title: Text(
-          'Edit Profile',
+          'Edit $title',
           style: TextStyle(
             color: const Color(0xFF0f3c4d),
           ),
