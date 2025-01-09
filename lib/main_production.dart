@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_egypt/features/layout/layout_view.dart';
+import 'package:go_egypt/features/profile/views/profile_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -40,7 +41,7 @@ class MyApp extends StatelessWidget {
           showSelectedLabels: true,
         ),
       ),
-      home: const LayoutView(),
+      home: LayoutView(),
     );
   }
 }
