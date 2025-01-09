@@ -1,8 +1,21 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_egypt/features/layout/layout_view.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  //initialize localization in the app
+  await EasyLocalization.ensureInitialized();
+  runApp(
+    //use "EasyLocalization" to let the app supports both Arabic and English languages
+    EasyLocalization(
+        //define supported languages
+        supportedLocales: const [Locale('en', 'US'), Locale('ar', 'EG')],
+        path: 'assets/languages',
+        //set default language of the app
+        fallbackLocale: const Locale('en', 'US'),
+        child: const MyApp()),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -11,6 +24,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      //to make the app able to be translated into different languages
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      //tell the app to be translated in the current selected language
+      locale: context.locale,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
