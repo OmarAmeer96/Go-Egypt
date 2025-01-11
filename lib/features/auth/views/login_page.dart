@@ -1,12 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_egypt/features/auth/constants.dart';
+import 'package:go_egypt/features/layout/layout_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../widgets/custom_button.dart';
 import '../widgets/custom_text_field.dart';
 import '../widgets/title_text.dart';
-import 'welcome.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -101,7 +101,7 @@ class _LoginPageState extends State<LoginPage> {
                             Constants.loginPasswordController.clear();
                             Navigator.push(context, MaterialPageRoute(
                               builder: (context) {
-                                return const Welcome();
+                                return const LayoutView();
                               },
                             ));
                           } else {
