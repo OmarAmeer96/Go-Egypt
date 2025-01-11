@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:go_egypt/features/profile/widgets/show_edit_dialog.dart';
 
 class CustomListTile extends StatelessWidget {
   const CustomListTile(
       {super.key,
       required this.icon,
       required this.title,
-      required this.subtitle});
+      required this.subtitle,
+      required this.id,
+      required this.onPressed});
 
   final IconData icon;
   final String title;
   final String subtitle;
+  final String id;
+  final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +27,7 @@ class CustomListTile extends StatelessWidget {
         title: Text(title),
         subtitle: Text(subtitle),
         trailing: IconButton(
-          onPressed: () {
-            showEditDialog(context, false, title);
-          },
+          onPressed: onPressed,
           icon: const Icon(
             Icons.arrow_forward_ios_rounded,
             size: 20,

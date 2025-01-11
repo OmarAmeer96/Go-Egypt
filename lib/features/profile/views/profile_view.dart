@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_egypt/features/profile/widgets/custom_list_tile.dart';
+import 'package:go_egypt/features/profile/widgets/custom_text_buttom.dart';
+import 'package:go_egypt/features/profile/widgets/custom_editing_text_field.dart';
 import 'package:go_egypt/features/profile/widgets/profile_pic_frame.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -48,7 +50,6 @@ class _ProfileViewState extends State<ProfileView> {
             ProfilePicFrame(
               img:
                   "https://cdn.pixabay.com/photo/2020/05/17/20/21/cat-5183427_1280.jpg",
-              // img: "https://i.imgur.com/BoN9kdC.png",
             ),
             SizedBox(
               height: 20,
@@ -57,21 +58,37 @@ class _ProfileViewState extends State<ProfileView> {
               icon: Icons.person,
               title: 'Full Name',
               subtitle: name,
+              id: 'name',
+              onPressed: () {
+                showEditDialog(context, 'name', 'Name');
+              },
             ),
             CustomListTile(
               icon: Icons.phone,
               title: 'Phone Number',
               subtitle: phone,
+              id: 'phone',
+              onPressed: () {
+                showEditDialog(context, 'phone', 'Phone Number');
+              },
             ),
             CustomListTile(
               icon: Icons.mail_rounded,
               title: 'Email',
               subtitle: email,
+              id: 'email',
+              onPressed: () {
+                showEditDialog(context, 'email', 'Email');
+              },
             ),
             CustomListTile(
               icon: Icons.password,
               title: 'Password',
               subtitle: hashedPassword(password.length),
+              id: 'password',
+              onPressed: () {
+                showEditDialog(context, 'password', 'Password');
+              },
             ),
           ],
         ),
@@ -85,5 +102,64 @@ class _ProfileViewState extends State<ProfileView> {
       stars += '*';
     }
     return stars;
+  }
+
+  Future<void> showEditDialog(
+      BuildContext context, String id, String title) async {
+    String editedValue = '';
+
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(
+            'Edit $title',
+            style: TextStyle(
+              color: const Color(0xFF0f3c4d),
+            ),
+          ),
+          content: CustomEditingTextField(
+            id: id,
+            onChanged: (value) {
+              editedValue = value;
+            },
+          ),
+          actions: <Widget>[
+            CustomTextButtom(
+              text: 'Confirm',
+              onPressed: () {
+                switch (id) {
+                  case 'name':
+                    name = editedValue;
+                    break;
+                  case 'phone':
+                    phone = editedValue;
+                    break;
+                  case 'email':
+                    email = editedValue;
+                    break;
+                  case 'password':
+                    password = editedValue;
+                    break;
+                  default:
+                }
+                setState(() {});
+                Navigator.pop(context);
+                const snackBar = SnackBar(
+                  content: Text('Profile has successfully updated'),
+                );
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+              },
+            ),
+            CustomTextButtom(
+              text: 'Back',
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            )
+          ],
+        );
+      },
+    );
   }
 }
