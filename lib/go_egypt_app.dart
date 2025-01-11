@@ -3,7 +3,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_egypt/core/core_cubits/language_cubit.dart';
 import 'package:go_egypt/core/helpers/build_bottom_nav_bar.dart';
-import 'package:go_egypt/features/layout/layout_view.dart';
+import 'package:go_egypt/features/auth/views/sign_up_page.dart';
 import 'package:go_egypt/generated/l10n.dart';
 
 class GoEgyptApp extends StatelessWidget {
@@ -32,8 +32,7 @@ class GoEgyptApp extends StatelessWidget {
               useMaterial3: true,
               bottomNavigationBarTheme: buildBottomNavBar(),
             ),
-            // home: SignUpPage(),
-            home: LayoutView(),
+            home: SignUpPage(),
           );
         },
       ),
