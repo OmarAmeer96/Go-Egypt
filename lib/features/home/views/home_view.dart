@@ -6,30 +6,35 @@ import '../widgets/place_item_widget.dart';
 class HomeView extends StatelessWidget {
   static const String routeName = 'home';
 
-  HomeView({super.key});
+  const HomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    return SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.all(10.0),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          'Suggested Places to Visit',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 22,
+            color: Colors.white,
+          ),
+        ),
+        backgroundColor: Colors.purple,
+        elevation: 2,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              const Text(
-                'Suggested Places to visit ',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w500,
-                  color: Color(0xFF324980),
-                ),
-              ),
               SizedBox(
                 height: size.height * 0.4,
                 child: GridView.builder(
+                  padding: EdgeInsets.zero,
                   scrollDirection: Axis.horizontal,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 1,
@@ -46,9 +51,10 @@ class HomeView extends StatelessWidget {
               const Text(
                 'Popular Places ',
                 style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500,
-                    color: Color(0xFF324980)),
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500,
+                  color: Color(0xFF324980),
+                ),
               ),
               SizedBox(
                 height: size.height * 0.4,

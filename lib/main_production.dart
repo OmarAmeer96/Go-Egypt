@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_egypt/features/layout/layout_view.dart';
-import 'package:go_egypt/features/profile/views/profile_view.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -10,12 +9,13 @@ void main() async {
   runApp(
     //use "EasyLocalization" to let the app supports both Arabic and English languages
     EasyLocalization(
-        //define supported languages
-        supportedLocales: const [Locale('en', 'US'), Locale('ar', 'EG')],
-        path: 'assets/languages',
-        //set default language of the app
-        fallbackLocale: const Locale('en', 'US'),
-        child: const MyApp()),
+      //define supported languages
+      supportedLocales: const [Locale('en', 'US'), Locale('ar', 'EG')],
+      path: 'assets/languages',
+      //set default language of the app
+      fallbackLocale: const Locale('en', 'US'),
+      child: const MyApp(),
+    ),
   );
 }
 
