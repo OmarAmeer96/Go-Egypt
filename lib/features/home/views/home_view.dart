@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_egypt/core/core_cubits/language_cubit.dart';
 import 'package:go_egypt/features/home/models/card_model.dart';
 import '../widgets/card_widget.dart';
@@ -21,7 +22,10 @@ class HomeView extends StatelessWidget {
             onPressed: () {
               context.read<LanguageCubit>().toggleLanguage();
             },
-            icon: const Icon(Icons.language_outlined),
+            icon: SvgPicture.asset(
+              "assets/icons/language_icon.svg",
+              width: 35,
+            ),
           ),
         ],
         title: const Text(
