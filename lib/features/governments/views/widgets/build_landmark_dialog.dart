@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:go_egypt/core/helpers/is_current_locale_english.dart';
 import 'package:go_egypt/features/governments/models/landmarks_model.dart';
+import 'package:go_egypt/generated/l10n.dart';
 
 Future<dynamic> buildLandmarkDialog(
   BuildContext context,
@@ -41,7 +43,7 @@ Future<dynamic> buildLandmarkDialog(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  landmark.name,
+                  isCurrentLocaleEnglish() ? landmark.enName : landmark.arName,
                   style: const TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.bold,
@@ -50,7 +52,9 @@ Future<dynamic> buildLandmarkDialog(
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  "Discover the beauty and history of ${landmark.name}, located in the heart of $governorate. This landmark is one of the most visited attractions in the region and offers a glimpse into the rich cultural heritage of Egypt.",
+                  isCurrentLocaleEnglish()
+                      ? "Discover the beauty and history of ${isCurrentLocaleEnglish() ? landmark.enName : landmark.arName}, located in the heart of $governorate. This landmark is one of the most visited attractions in the region and offers a glimpse into the rich cultural heritage of Egypt."
+                      : "اكتشف جمال وتاريخ ${isCurrentLocaleEnglish() ? landmark.enName : landmark.arName}، الواقع في قلب $governorate. هذا المعلم هو واحد من أكثر الأماكن زيارة في المنطقة ويقدم نظرة على التراث الثقافي الغني لمصر.",
                   style: const TextStyle(
                     fontSize: 16,
                     color: Colors.grey,
@@ -59,16 +63,19 @@ Future<dynamic> buildLandmarkDialog(
               ],
             ),
           ),
-          Align(
-            alignment: Alignment.bottomRight,
-            child: TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              style: TextButton.styleFrom(
-                foregroundColor: Colors.purple,
+          Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: Align(
+              alignment: Alignment.bottomRight,
+              child: TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                style: TextButton.styleFrom(
+                  foregroundColor: Colors.purple,
+                ),
+                child: Text(S.of(context).close),
               ),
-              child: const Text("Close"),
             ),
           ),
         ],

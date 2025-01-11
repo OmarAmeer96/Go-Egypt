@@ -2,6 +2,7 @@
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:go_egypt/core/helpers/is_current_locale_english.dart';
 import 'package:go_egypt/features/governments/models/landmarks_model.dart';
 
 class LandmarkCardItem extends StatelessWidget {
@@ -33,8 +34,11 @@ class LandmarkCardItem extends StatelessWidget {
       child: Row(
         children: [
           ClipRRect(
-            borderRadius: const BorderRadius.horizontal(
-              left: Radius.circular(12),
+            borderRadius: BorderRadius.horizontal(
+              left:
+                  isCurrentLocaleEnglish() ? Radius.circular(12) : Radius.zero,
+              right:
+                  isCurrentLocaleEnglish() ? Radius.zero : Radius.circular(12),
             ),
             child: CachedNetworkImage(
               imageUrl: landmark.image,
@@ -57,7 +61,7 @@ class LandmarkCardItem extends StatelessWidget {
                 horizontal: 16,
               ),
               child: Text(
-                landmark.name,
+                isCurrentLocaleEnglish() ? landmark.enName : landmark.arName,
                 style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,

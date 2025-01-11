@@ -15,7 +15,7 @@ class ProfilePicFrame extends StatelessWidget {
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             image: DecorationImage(
-              fit: BoxFit.fill,
+              fit: BoxFit.cover,
               image: NetworkImage(img),
             ),
             boxShadow: [
@@ -44,7 +44,7 @@ class ProfilePicFrame extends StatelessWidget {
                 color: Colors.white,
                 size: 18,
               ),
-              onPressed: (){},
+              onPressed: () {},
             ),
           ),
         ),

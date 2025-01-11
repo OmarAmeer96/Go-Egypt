@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_egypt/core/helpers/is_current_locale_english.dart';
 import 'package:go_egypt/features/home/models/card_model.dart';
 import 'package:go_egypt/features/home/widgets/place_item_widget.dart';
 
@@ -35,7 +36,9 @@ class _CardWidgetState extends State<CardWidget> {
             child: Row(
               children: [
                 Text(
-                  widget.card.government,
+                  isCurrentLocaleEnglish()
+                      ? widget.card.enGovernmentName
+                      : widget.card.arGovernmentName,
                   style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w500,

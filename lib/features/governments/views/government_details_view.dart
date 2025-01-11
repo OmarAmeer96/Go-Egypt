@@ -1,33 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:go_egypt/core/helpers/is_current_locale_english.dart';
 import 'package:go_egypt/features/governments/models/landmarks_model.dart';
-import 'package:go_egypt/features/governments/widgets/build_landmark_dialog.dart';
-import 'package:go_egypt/features/governments/widgets/gorenment_banner_item.dart';
-import 'package:go_egypt/features/governments/widgets/landmark_card_item.dart';
+import 'package:go_egypt/features/governments/views/widgets/build_landmark_dialog.dart';
+import 'package:go_egypt/features/governments/views/widgets/gorenment_banner_item.dart';
+import 'package:go_egypt/features/governments/views/widgets/landmark_card_item.dart';
+import 'package:go_egypt/generated/l10n.dart';
 
 class GovernmentDetailsView extends StatelessWidget {
-  final String governorate;
+  final String tagName;
   final String image;
+  final String arName;
 
   const GovernmentDetailsView({
     super.key,
-    required this.governorate,
+    required this.tagName,
     required this.image,
+    required this.arName,
   });
 
   @override
   Widget build(BuildContext context) {
     final filteredLandmarks = LandmarksModel.landmarks
         .where(
-          (landmark) => landmark.governorate == governorate,
+          (landmark) => landmark.enGovernorateName == tagName,
         )
         .toList();
 
     return Scaffold(
-      appBar: buildGovernmentsDetailsAppBar(),
+      appBar: buildGovernmentsDetailsAppBar(context),
       body: Column(
         children: [
           Hero(
-            tag: governorate,
+            tag: tagName,
             child: GovernmentBannerItem(image: image),
           ),
           Expanded(
@@ -38,7 +42,11 @@ class GovernmentDetailsView extends StatelessWidget {
                 final landmark = filteredLandmarks[index];
                 return GestureDetector(
                   onTap: () {
-                    buildLandmarkDialog(context, landmark, governorate);
+                    buildLandmarkDialog(
+                      context,
+                      landmark,
+                      isCurrentLocaleEnglish() ? tagName : arName,
+                    );
                   },
                   child: LandmarkCardItem(landmark: landmark),
                 );
@@ -50,10 +58,12 @@ class GovernmentDetailsView extends StatelessWidget {
     );
   }
 
-  AppBar buildGovernmentsDetailsAppBar() {
+  AppBar buildGovernmentsDetailsAppBar(BuildContext context) {
     return AppBar(
       title: Text(
-        '$governorate Landmarks',
+        isCurrentLocaleEnglish()
+            ? '$tagName ${S.of(context).landmarks}'
+            : '${S.of(context).landmarks} $arName',
         style: const TextStyle(
           fontWeight: FontWeight.bold,
           fontSize: 22,

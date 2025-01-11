@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../constants.dart';
-
 //a class contains the design of the buttons used in the app
 class CustomButton extends StatelessWidget {
   //the variables required in this class and must send values to them using constructor
@@ -20,7 +18,7 @@ class CustomButton extends StatelessWidget {
         height: MediaQuery.of(context).size.height * 0.07,
         padding: const EdgeInsets.all(15),
         onPressed: onPressed,
-        color: Constants.mainColor,
+        color: Colors.deepPurple,
         child: Text(
           text,
           style: const TextStyle(color: Colors.white),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_egypt/features/governments/models/governments_model.dart';
-import 'package:go_egypt/features/governments/widgets/government_card_item.dart';
+import 'package:go_egypt/features/governments/views/widgets/government_card_item.dart';
+import 'package:go_egypt/generated/l10n.dart';
 
 class GovernmentsView extends StatelessWidget {
   const GovernmentsView({super.key});
@@ -8,7 +9,7 @@ class GovernmentsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildGovernmentsViewAppBar(),
+      appBar: buildGovernmentsViewAppBar(context),
       body: Stack(
         children: [
           ListView.builder(
@@ -24,10 +25,10 @@ class GovernmentsView extends StatelessWidget {
     );
   }
 
-  AppBar buildGovernmentsViewAppBar() {
+  AppBar buildGovernmentsViewAppBar(BuildContext context) {
     return AppBar(
-      title: const Text(
-        'Governments of Egypt',
+      title: Text(
+        S.of(context).governments_of_egypt,
         style: TextStyle(
           fontWeight: FontWeight.bold,
           fontSize: 22,
