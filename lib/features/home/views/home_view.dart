@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:go_egypt/core/core_cubits/language_cubit.dart';
 import 'package:go_egypt/features/home/models/card_model.dart';
 import 'package:go_egypt/generated/l10n.dart';
 import '../widgets/card_widget.dart';
@@ -17,17 +14,17 @@ class HomeView extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        actions: [
-          IconButton(
-            onPressed: () {
-              context.read<LanguageCubit>().toggleLanguage();
-            },
-            icon: SvgPicture.asset(
-              "assets/icons/language_icon.svg",
-              width: 35,
-            ),
-          ),
-        ],
+        // actions: [
+        //   IconButton(
+        //     onPressed: () {
+        //       context.read<LanguageCubit>().toggleLanguage();
+        //     },
+        //     icon: SvgPicture.asset(
+        //       "assets/icons/language_icon.svg",
+        //       width: 35,
+        //     ),
+        //   ),
+        // ],
         title: Text(
           S.of(context).suggested_places_to_visit,
           style: const TextStyle(
