@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../constants.dart';
-
 //a class contains the design of the "textFormField" used in the app
 class CustomTextField extends StatelessWidget {
   //the variables required in this class and must send values to them using constructor
@@ -43,13 +41,13 @@ class CustomTextField extends StatelessWidget {
                       icon: Icon(
                         //check which icon to add based on the the value of "obscureText" variable which detects if it's secure or not
                         obscureText! ? Icons.visibility : Icons.visibility_off,
-                        color: Constants.mainColor,
+                        color: Colors.purpleAccent,
                       ),
                     )
                   : const SizedBox(),
               prefixIcon: Icon(
                 prefix,
-                color: Constants.mainColor,
+                color: Colors.deepPurple,
               )),
           validator: validator),
     );
