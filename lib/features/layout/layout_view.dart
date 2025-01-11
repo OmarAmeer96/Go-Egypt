@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_egypt/features/favorites/favorites_view.dart';
 import 'package:go_egypt/features/profile/views/profile_view.dart';
+import 'package:go_egypt/generated/l10n.dart';
 import '../governments/views/governments_view.dart';
 import '../home/views/home_view.dart';
 
@@ -34,15 +35,25 @@ class _LayoutViewState extends State<LayoutView> {
             currentIndex = index;
           });
         },
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: 'Home'),
+        items: [
           BottomNavigationBarItem(
-              icon: ImageIcon(AssetImage('assets/icons/government_icon.png')),
-              label: 'Governments'),
+            icon: Icon(Icons.home_filled),
+            label: S.of(context).bottom_navigation_home,
+          ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.favorite), label: 'Favorites'),
+            icon: ImageIcon(
+              AssetImage('assets/icons/government_icon.png'),
+            ),
+            label: S.of(context).bottom_navigation_governments,
+          ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.account_circle), label: 'Profile')
+            icon: Icon(Icons.favorite),
+            label: S.of(context).bottom_navigation_favorites,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.account_circle),
+            label: S.of(context).bottom_navigation_profile,
+          )
         ],
       ),
     );

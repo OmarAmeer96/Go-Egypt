@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_egypt/core/helpers/is_current_locale_english.dart';
 import 'package:go_egypt/features/home/models/place_model.dart';
 
 class PlaceItemWidget extends StatelessWidget {
@@ -28,7 +29,9 @@ class PlaceItemWidget extends StatelessWidget {
             height: 5,
           ),
           Text(
-            PlaceModel.places[index].name,
+            isCurrentLocaleEnglish()
+                ? PlaceModel.places[index].enName
+                : PlaceModel.places[index].arName,
             style: const TextStyle(fontSize: 20.0),
           ),
         ],

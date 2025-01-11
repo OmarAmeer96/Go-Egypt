@@ -1,9 +1,9 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_egypt/core/core_cubits/language_cubit.dart';
 import 'package:go_egypt/features/home/models/card_model.dart';
+import 'package:go_egypt/generated/l10n.dart';
 import '../widgets/card_widget.dart';
 import '../widgets/place_item_widget.dart';
 
@@ -14,12 +14,11 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         actions: [
           IconButton(
-            color: Colors.white,
             onPressed: () {
               context.read<LanguageCubit>().toggleLanguage();
             },
@@ -30,8 +29,8 @@ class HomeView extends StatelessWidget {
           ),
         ],
         title: Text(
-          tr('suggested_places_to_visit'),
-          style: TextStyle(
+          S.of(context).suggested_places_to_visit,
+          style: const TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 22,
             color: Colors.white,
@@ -56,17 +55,14 @@ class HomeView extends StatelessWidget {
                     crossAxisCount: 1,
                     mainAxisSpacing: 10,
                   ),
-                  itemBuilder: (context, index) => SizedBox(
-                    child: PlaceItemWidget(
-                      index: index,
-                    ),
-                  ),
+                  itemBuilder: (context, index) =>
+                      PlaceItemWidget(index: index),
                   itemCount: 5,
                 ),
               ),
-              const Text(
-                'Popular Places ',
-                style: TextStyle(
+              Text(
+                S.of(context).popular_places,
+                style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w500,
                   color: Color(0xFF324980),
@@ -86,7 +82,7 @@ class HomeView extends StatelessWidget {
                   ),
                   itemCount: 5,
                 ),
-              )
+              ),
             ],
           ),
         ),

@@ -2,6 +2,7 @@
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:go_egypt/core/helpers/is_current_locale_english.dart';
 import 'package:go_egypt/features/governments/models/governments_model.dart';
 import 'package:go_egypt/features/governments/views/government_details_view.dart';
 
@@ -22,8 +23,9 @@ class GovernmentCardItem extends StatelessWidget {
           context,
           MaterialPageRoute(
             builder: (context) => GovernmentDetailsView(
-              governorate: governorate.name,
+              tagName: governorate.enName,
               image: governorate.image,
+              arName: governorate.arName,
             ),
           ),
         );
@@ -47,7 +49,7 @@ class GovernmentCardItem extends StatelessWidget {
           child: Row(
             children: [
               Hero(
-                tag: governorate.name,
+                tag: governorate.enName,
                 child: Container(
                   margin: const EdgeInsets.all(8.0),
                   decoration: BoxDecoration(),
@@ -70,7 +72,9 @@ class GovernmentCardItem extends StatelessWidget {
               const SizedBox(width: 16),
               Expanded(
                 child: Text(
-                  governorate.name,
+                  isCurrentLocaleEnglish()
+                      ? governorate.enName
+                      : governorate.arName,
                   style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,

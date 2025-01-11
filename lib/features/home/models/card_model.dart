@@ -5,32 +5,46 @@ class CardModel {
 
   String name;
 
-  String government;
+  String enGovernmentName;
+  String arGovernmentName;
 
-  CardModel(
-      {required this.imagePath, required this.name, required this.government});
+  CardModel({
+    required this.imagePath,
+    required this.name,
+    required this.enGovernmentName,
+    required this.arGovernmentName,
+  });
 
   static List<CardModel> cards = [
     CardModel(
-        imagePath: PlaceModel.places[0].imagePath,
-        name: PlaceModel.places[0].name,
-        government: 'Aswan'),
+      imagePath: PlaceModel.places[0].imagePath,
+      name: PlaceModel.places[0].enName,
+      enGovernmentName: 'Aswan',
+      arGovernmentName: 'أسوان',
+    ),
     CardModel(
-        imagePath:PlaceModel.places[1].imagePath,
-        name: PlaceModel.places[1].name,
-        government: 'Giza'),
+      imagePath: PlaceModel.places[1].imagePath,
+      name: PlaceModel.places[1].enName,
+      enGovernmentName: 'Giza',
+      arGovernmentName: 'الجيزة',
+    ),
     CardModel(
-        imagePath:PlaceModel.places[2].imagePath,
-        name: PlaceModel.places[2].name,
-        government: 'Luxor'),
+      imagePath: PlaceModel.places[2].imagePath,
+      name: PlaceModel.places[2].enName,
+      enGovernmentName: 'Luxor',
+      arGovernmentName: 'الأقصر',
+    ),
     CardModel(
-        imagePath:PlaceModel.places[3].imagePath,
-        name: PlaceModel.places[3].name,
-        government: ' Aswan'),
+      imagePath: PlaceModel.places[3].imagePath,
+      name: PlaceModel.places[3].enName,
+      enGovernmentName: ' Aswan',
+      arGovernmentName: 'أسوان',
+    ),
     CardModel(
-        imagePath: PlaceModel.places[4].imagePath,
-        name: PlaceModel.places[4].name,
-        government: ' Alexandria'),
-    // Add more cards as needed
+      imagePath: PlaceModel.places[4].imagePath,
+      name: PlaceModel.places[4].enName,
+      enGovernmentName: ' Alexandria',
+      arGovernmentName: 'الإسكندرية',
+    ),
   ];
 }

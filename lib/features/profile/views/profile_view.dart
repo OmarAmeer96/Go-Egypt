@@ -1,9 +1,14 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_egypt/core/core_cubits/language_cubit.dart';
 import 'package:go_egypt/features/profile/widgets/custom_list_tile.dart';
 import 'package:go_egypt/features/profile/widgets/custom_text_buttom.dart';
 import 'package:go_egypt/features/profile/widgets/custom_editing_text_field.dart';
 import 'package:go_egypt/features/profile/widgets/profile_pic_frame.dart';
+import 'package:go_egypt/generated/l10n.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:toggle_switch/toggle_switch.dart';
 
 class ProfileView extends StatefulWidget {
   const ProfileView({super.key});
@@ -29,16 +34,16 @@ class _ProfileViewState extends State<ProfileView> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     getCredentials();
   }
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Profile'),
+        title: Text(S.of(context).profile),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -56,43 +61,93 @@ class _ProfileViewState extends State<ProfileView> {
             ),
             CustomListTile(
               icon: Icons.person,
-              title: 'Full Name',
+              title: S.of(context).full_name,
               subtitle: name,
               id: 'name',
               onPressed: () {
-                showEditDialog(context, 'name', 'Name');
+                showEditDialog(
+                  context,
+                  'name',
+                  S.of(context).full_name,
+                );
               },
             ),
             CustomListTile(
               icon: Icons.phone,
-              title: 'Phone Number',
+              title: S.of(context).phone_number,
               subtitle: phone,
               id: 'phone',
               onPressed: () {
-                showEditDialog(context, 'phone', 'Phone Number');
+                showEditDialog(
+                  context,
+                  'phone',
+                  S.of(context).phone_number,
+                );
               },
             ),
             CustomListTile(
               icon: Icons.mail_rounded,
-              title: 'Email',
+              title: S.of(context).email_address,
               subtitle: email,
               id: 'email',
               onPressed: () {
-                showEditDialog(context, 'email', 'Email');
+                showEditDialog(
+                  context,
+                  'email',
+                  S.of(context).email_address,
+                );
               },
             ),
             CustomListTile(
               icon: Icons.password,
-              title: 'Password',
+              title: S.of(context).password,
               subtitle: hashedPassword(password.length),
               id: 'password',
               onPressed: () {
-                showEditDialog(context, 'password', 'Password');
+                showEditDialog(
+                  context,
+                  'password',
+                  S.of(context).password,
+                );
               },
             ),
+            SizedBox(
+              height: 20,
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            buildLanguageSwitcher(size),
           ],
         ),
       ),
+    );
+  }
+
+  ToggleSwitch buildLanguageSwitcher(Size size) {
+    return ToggleSwitch(
+      radiusStyle: true,
+      minWidth: 90.0,
+      initialLabelIndex: Intl.getCurrentLocale() == "ar" ? 1 : 0,
+      activeFgColor: Colors.white,
+      inactiveBgColor: Colors.grey,
+      inactiveFgColor: Colors.white,
+      totalSwitches: 2,
+      labels: ['English', 'العربية'],
+      customTextStyles: [
+        TextStyle(fontSize: 18),
+        TextStyle(fontSize: 18),
+      ],
+      activeBgColors: [
+        [Colors.blueAccent],
+        [Colors.pinkAccent]
+      ],
+      animate: true,
+      animationDuration: 200,
+      customWidths: [size.width * 0.3, size.width * 0.3],
+      onToggle: (index) {
+        context.read<LanguageCubit>().toggleLanguage();
+      },
     );
   }
 
@@ -113,7 +168,7 @@ class _ProfileViewState extends State<ProfileView> {
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text(
-            'Edit $title',
+            '${S.of(context).edit} $title',
             style: TextStyle(
               color: const Color(0xFF0f3c4d),
             ),
@@ -126,7 +181,7 @@ class _ProfileViewState extends State<ProfileView> {
           ),
           actions: <Widget>[
             CustomTextButtom(
-              text: 'Confirm',
+              text: S.of(context).confirm,
               onPressed: () {
                 switch (id) {
                   case 'name':
@@ -145,14 +200,14 @@ class _ProfileViewState extends State<ProfileView> {
                 }
                 setState(() {});
                 Navigator.pop(context);
-                const snackBar = SnackBar(
-                  content: Text('Profile has successfully updated'),
+                SnackBar snackBar = SnackBar(
+                  content: Text(S.of(context).profile_has_successfully_updated),
                 );
                 ScaffoldMessenger.of(context).showSnackBar(snackBar);
               },
             ),
             CustomTextButtom(
-              text: 'Back',
+              text: S.of(context).back,
               onPressed: () {
                 Navigator.pop(context);
               },
