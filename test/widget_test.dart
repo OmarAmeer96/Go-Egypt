@@ -13,7 +13,7 @@ import 'package:go_egypt/main_production.dart';
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(const GoEgyptApp());
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);

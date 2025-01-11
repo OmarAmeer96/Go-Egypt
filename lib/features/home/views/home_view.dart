@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_egypt/core/core_cubits/language_cubit.dart';
 import 'package:go_egypt/features/home/models/card_model.dart';
 import '../widgets/card_widget.dart';
 import '../widgets/place_item_widget.dart';
@@ -13,6 +15,15 @@ class HomeView extends StatelessWidget {
     var size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          IconButton(
+            color: Colors.white,
+            onPressed: () {
+              context.read<LanguageCubit>().toggleLanguage();
+            },
+            icon: const Icon(Icons.language_outlined),
+          ),
+        ],
         title: const Text(
           'Suggested Places to Visit',
           style: TextStyle(
