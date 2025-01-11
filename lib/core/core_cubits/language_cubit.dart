@@ -11,8 +11,11 @@ class LanguageCubit extends Cubit<Locale> {
   void _loadCurrentLocale() async {
     String? currentLocale =
         await SharedPrefHelper.getString(SharedPrefKeys.currentLocale) ?? 'en';
-    if (currentLocale != null) {
-      emit(Locale(currentLocale));
+
+    if (currentLocale == 'ar') {
+      emit(const Locale('ar', 'EG'));
+    } else {
+      emit(const Locale('en', 'US'));
     }
   }
 

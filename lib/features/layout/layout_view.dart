@@ -28,7 +28,6 @@ class _LayoutViewState extends State<LayoutView> {
     return Scaffold(
       body: pages[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
-
         currentIndex: currentIndex,
         onTap: (index) {
           setState(() {
